@@ -7,4 +7,4 @@
 2. open GrayMapper-Qt.pro using Qt Creator
 3. build the project and run
 ## demo
-![img](https://github.com/verizonwuinxjtu/GrayMapper-Qt/raw/master/demo.gif)
+![img](https://github.com/verizonwuinxjtu/GrayMapper-Qt/blob/master/demo.gif)
