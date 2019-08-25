@@ -8,7 +8,7 @@ QT       += core gui charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-TARGET = DraggableScatter-Qt
+TARGET = GrayMapper-Qt
 TEMPLATE = app
 
 # The following define makes your compiler emit warnings if you use
@@ -23,15 +23,23 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-SOURCES += main.cpp\
+SOURCES += \
     chartview.cpp \
     curveinterpolator.cpp \
-    widget.cpp
+    grayscalemapper.cpp \
+    imagemanager.cpp \
+    main.cpp \
+    mainwidget.cpp
 
 HEADERS  += \
     chartview.h \
     curveinterpolator.h \
-    widget.h
+    grayscalemapper.h \
+    imagemanager.h \
+    mainwidget.h
 
 FORMS += \
-    widget.ui
+    mainwidget.ui
+
+DISTFILES += \
+    README.md

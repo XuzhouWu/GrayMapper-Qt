@@ -27,6 +27,7 @@ public:
     void mouseMoveEvent(QMouseEvent *event) override;
     void update();
     void reset();
+    QVector<QPointF> getPoints();
 
 public slots:
     void onCurveFinished(const QVector<int> &mapArray);
@@ -48,7 +49,6 @@ private:
     QLineSeries         *mLine;
 
     bool                isDragging;
-
     int                 currentPointIndex;
 
     PointDragMode            mPointDragMode;

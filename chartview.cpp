@@ -25,7 +25,7 @@ ChartView::ChartView(QWidget *parent)
     for(auto i = 0; i < 256; i++) {
         *mLine<<QPointF(double(i)/255, double(i)/255);
     }
-    // 初始化chart
+
     chart()->addSeries(mLine);
     chart()->addSeries(mScatter);
 
@@ -33,7 +33,6 @@ ChartView::ChartView(QWidget *parent)
     chart()->legend()->hide();
     chart()->axisX()->setRange(0, 1);
     chart()->axisY()->setRange(0, 1);
-
     connect(mScatter, SIGNAL(pressed(QPointF)), this, SLOT(handlePressedPoint(QPointF)));
     connect(mScatter, SIGNAL(released(QPointF)), this, SLOT(handleReleasedPoint(QPointF)));
 }
@@ -87,6 +86,11 @@ void ChartView::reset()
     mScatter->replace(scatterPoints);
     mLine->replace(linePoints);
     update();
+}
+
+QVector<QPointF> ChartView::getPoints()
+{
+    return mScatter->pointsVector();
 }
 
 void ChartView::onCurveFinished(const QVector<int> &mapArray)
