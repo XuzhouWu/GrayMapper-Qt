@@ -42,4 +42,5 @@ FORMS += \
     mainwidget.ui
 
 DISTFILES += \
-    README.md
+    README.md \
+    demo.gif
