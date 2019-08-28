@@ -30,7 +30,7 @@ public:
     QVector<QPointF> getPoints();
 
 public slots:
-    void onCurveFinished(const QVector<int> &mapArray);
+    void onCurveFinished(const QVector<uchar> &mapArray);
     void onPointDragModeChanged(int pointDragMode);
 
 signals:

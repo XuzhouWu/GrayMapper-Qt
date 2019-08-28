@@ -16,10 +16,10 @@ public:
 signals:
 
 public slots:
-    void updateMap(const QVector<int> &mapArray);
+    void updateMap(const QVector<uchar> &mapArray);
 
 private:
-    QVector<int> mMapArray;
+    QVector<uchar> mMapArray;
 };
 
 #endif // GRAYSCALEMAPPER_H

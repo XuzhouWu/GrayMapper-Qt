@@ -36,7 +36,8 @@ void ImageManager::loadFromLocal(QString localFolderPath)
     {
 
         QString new_path = localFolderPath+"/"+QString::number(i)+".png";
-        imageList.append(QImage(new_path));
+        QImage img = QImage(new_path).convertToFormat(QImage::Format_ARGB32);
+        imageList.append(img);
     }
     emit loadFinished();
 }

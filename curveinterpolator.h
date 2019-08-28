@@ -12,7 +12,7 @@ public:
     explicit CurveInterpolator(QObject *parent = 0);
 
 signals:
-    void CurveChangged(const QVector<int> &mapArray);
+    void CurveChangged(const QVector<uchar> &mapArray);
 
 public slots:
     void setMethod(QString method);

@@ -93,7 +93,7 @@ QVector<QPointF> ChartView::getPoints()
     return mScatter->pointsVector();
 }
 
-void ChartView::onCurveFinished(const QVector<int> &mapArray)
+void ChartView::onCurveFinished(const QVector<uchar> &mapArray)
 {
     QVector<QPointF> points = mLine->pointsVector();
     for(auto i = 0; i < points.size(); i++) {

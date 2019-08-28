@@ -56,6 +56,7 @@ private:
 
     bool                imageLoadedFlag;
     int                 imageIndex;
+    int                 fpsCounter;
 };
 
 #endif // MAINWIDGET_H

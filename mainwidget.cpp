@@ -1,6 +1,7 @@
 ﻿#include "mainwidget.h"
 #include "ui_mainwidget.h"
 #include <QDebug>
+#include <windows.h>
 
 MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
@@ -9,7 +10,8 @@ MainWidget::MainWidget(QWidget *parent) :
     mMapper(NULL),
     mInterpolator(NULL),
     imageLoadedFlag(false),
-    imageIndex(0)
+    imageIndex(0),
+    fpsCounter(0)
 {
     ui->setupUi(this);
 
@@ -21,7 +23,7 @@ MainWidget::MainWidget(QWidget *parent) :
 
     // 设置帧率计时器
     fpsTimer = new QTimer;
-    fpsTimer->setInterval(1000);
+    fpsTimer->setInterval(250);
     fpsTimer->setTimerType(Qt::PreciseTimer);
     connect(fpsTimer, SIGNAL(timeout()), this, SLOT(fpsUpdate()));
 
@@ -34,8 +36,8 @@ MainWidget::MainWidget(QWidget *parent) :
     connect(this, SIGNAL(pointDragModeChanged(int)), ui->curveWidget, SLOT(onPointDragModeChanged(int)));
 
     connect(mImageManager, SIGNAL(loadFinished()), this, SLOT(onImageLoadFinished()));
-    connect(mInterpolator, SIGNAL(CurveChangged(QVector<int>)), mMapper, SLOT(updateMap(QVector<int>)));
-    connect(mInterpolator, SIGNAL(CurveChangged(QVector<int>)), ui->curveWidget, SLOT(onCurveFinished(QVector<int>)));
+    connect(mInterpolator, SIGNAL(CurveChangged(QVector<uchar>)), mMapper, SLOT(updateMap(QVector<uchar>)));
+    connect(mInterpolator, SIGNAL(CurveChangged(QVector<uchar>)), ui->curveWidget, SLOT(onCurveFinished(QVector<uchar>)));
     connect(ui->curveWidget, SIGNAL(pointsChanged(QVector<QPointF>)), mInterpolator, SLOT(interpolate(QVector<QPointF>)));
 
     ui->curveWidget->update();
@@ -93,16 +95,23 @@ void MainWidget::plotUpdate()
     QImage image = mMapper->mapGrayScale(rawImage);
     ui->imageLabel->setPixmap(QPixmap::fromImage(image).scaled(ui->imageLabel->size(),Qt::KeepAspectRatio));
     //    ui->imageLabel->setScaledContents(true);
+    fpsCounter++;
 }
 
 void MainWidget::fpsUpdate()
 {
-    static int lastImageIndex = 0;
-    int fps = imageIndex - lastImageIndex;
-    if(lastImageIndex > imageIndex) {
-        fps += mImageManager->imageNums();
-    }
-    lastImageIndex = imageIndex;
+    static LARGE_INTEGER freq={0};
+    static LARGE_INTEGER lastTime = {0};
+    static LARGE_INTEGER currentTime = {0};
+
+    QueryPerformanceFrequency(&freq);
+    QueryPerformanceCounter(&currentTime);
+
+    double interval = (currentTime.QuadPart - lastTime.QuadPart)/double(freq.QuadPart);
+    double fps = (fpsCounter/interval);
+    fpsCounter = 0;
+    lastTime = currentTime;
+
     ui->fpsLabel->setText(QString::number(fps));
 }
 

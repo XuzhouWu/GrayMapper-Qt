@@ -26,14 +26,14 @@ void CurveInterpolator::interpolate(const QVector<QPointF> &points)
     }
     spl2(x.data(), y.data(), 9, 0, 0, xout, 256, res);
 
-    QVector<int> mapArray;
+    QVector<uchar> mapArray;
     for(auto i = 0; i < 256; i++) {
         auto tmp = 255*res[i];
         if(tmp>255)
             tmp = 255;
         else if(tmp < 0)
             tmp = 0;
-        mapArray.append(int(tmp));
+        mapArray.append(uchar(tmp));
     }
     emit CurveChangged(mapArray);
 }
