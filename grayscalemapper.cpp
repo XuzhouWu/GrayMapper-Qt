@@ -28,8 +28,7 @@ QImage GrayScaleMapper::mapGrayScale(const QImage &imageIn)
 //        uchar* line = imageOut.scanLine(y);
 
 //        for(int i = 0; i < width/4; i++) {
-//            int idx = 16*i;
-//            __m128i *data = (__m128i*)(line + idx);
+//            int idx = 16*i;0-nm,.         __m128i *data = (__m128i*)(line + idx);
 
 //            *data = _mm_set_epi8(mMapArray[line[idx+12]],mMapArray[line[idx+13]],mMapArray[line[idx+13]],line[idx+13],
 //                    mMapArray[line[idx+8]],mMapArray[line[idx+9]],mMapArray[line[idx+9]],line[idx+9],

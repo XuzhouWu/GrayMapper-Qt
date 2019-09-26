@@ -1,4 +1,5 @@
 ﻿# GrayMapper-Qt
+[![CodeFactor](https://www.codefactor.io/repository/github/verizonwuinxjtu/graymapper-qt/badge/master)](https://www.codefactor.io/repository/github/verizonwuinxjtu/graymapper-qt/overview/master)
 ## Features
 - draggable scatter and realtime curve interpolation using QtCharts
 - realtime gray curve mapper to rendering images on the folder

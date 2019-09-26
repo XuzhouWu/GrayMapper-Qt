@@ -2,12 +2,10 @@
 
 CurveInterpolator::CurveInterpolator(QObject *parent) : QObject(parent)
 {
-
 }
 
 void CurveInterpolator::setMethod(QString method)
 {
-
 }
 
 void CurveInterpolator::interpolate(const QVector<QPointF> &points)
@@ -18,9 +16,10 @@ void CurveInterpolator::interpolate(const QVector<QPointF> &points)
         x.append(point.x());
         y.append(point.y());
     }
+
     double res[256];
-//    fitting(x.data(),y.data(),9,res);
     double xout[256];
+
     for(auto i = 0; i < 256; i++) {
         xout[i] = double(i)/255;
     }
@@ -40,7 +39,6 @@ void CurveInterpolator::interpolate(const QVector<QPointF> &points)
 
 void CurveInterpolator::onMethodChanged(QString interpolationMethod)
 {
-
 }
 
 void CurveInterpolator::fitting(double x[], double y[], int n, double des[])
